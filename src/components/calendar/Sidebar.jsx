@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PlusCircle, Trash2, Trash, X } from "lucide-react"; // Added X icon
+import { PlusCircle, Trash, X } from "lucide-react";
 import { HOLIDAYS_2026 } from "@/constants/calendar";
 
 export default function Sidebar({ 
@@ -24,25 +24,22 @@ export default function Sidebar({
     setNoteInput("");
   };
 
-  // --- NEW: Individual Delete Function ---
   const deleteSingleNote = (dateKey, noteIndex) => {
     const newNotes = { ...notes };
     newNotes[dateKey] = newNotes[dateKey].filter((_, idx) => idx !== noteIndex);
-    
-    // Clean up the key if no notes are left for that day
-    if (newNotes[dateKey].length === 0) {
-      delete newNotes[dateKey];
-    }
-    
+    if (newNotes[dateKey].length === 0) delete newNotes[dateKey];
     setNotes(newNotes);
   };
 
   const formattedKey = rangeStart ? getFormattedDate(rangeStart) : "";
 
   return (
-    <div className="w-[400px] flex flex-col gap-6">
+    <div className="w-full flex flex-col gap-6 max-md:gap-0">
       {/* Quick Note Card */}
-      <div className={`rounded-[40px] p-8 shadow-xl border flex flex-col transition-all duration-500 overflow-hidden ${darkMode ? 'bg-[#1e1e1e] border-white/5' : 'bg-white border-white'}`}>
+      <div className={`p-8 shadow-xl border flex flex-col transition-all duration-500 
+        ${darkMode ? 'bg-[#1e1e1e] border-white/5' : 'bg-white border-white'}
+        rounded-[40px] max-md:rounded-none max-md:border-x-0 max-md:border-t-0`}
+      >
         <h3 className={`text-[10px] font-black uppercase tracking-widest mb-6 flex items-center gap-2 ${darkMode ? 'text-white/40' : 'text-gray-400'}`}>
           <PlusCircle size={14} /> {rangeEnd ? 'Range Sync' : 'Quick Note'}
         </h3>
@@ -59,7 +56,10 @@ export default function Sidebar({
       </div>
 
       {/* Timeline Card */}
-      <div className={`flex-1 rounded-[40px] p-8 shadow-xl border flex flex-col overflow-hidden transition-all duration-500 ${darkMode ? 'bg-[#1e1e1e] border-white/5' : 'bg-white border-white'}`}>
+      <div className={`flex-1 p-8 shadow-xl border flex flex-col transition-all duration-500
+        ${darkMode ? 'bg-[#1e1e1e] border-white/5' : 'bg-white border-white'}
+        rounded-[40px] max-md:rounded-none max-md:border-x-0 max-md:border-b-0 max-md:pb-20`}
+      >
         <div className="flex justify-between items-center mb-6">
           <h3 className={`text-[10px] font-black uppercase tracking-widest ${darkMode ? 'text-white/40' : 'text-gray-400'}`}>Timeline</h3>
           {Object.keys(notes).length > 0 && (
@@ -72,7 +72,6 @@ export default function Sidebar({
         <div className="flex-1 overflow-y-auto pr-2 space-y-4 custom-scrollbar">
           {rangeStart && (
             <>
-              {/* Holiday Display */}
               {HOLIDAYS_2026[formattedKey] && (
                 <div className={`p-6 rounded-[25px] border-l-4 ${darkMode ? 'bg-cyan-500/10 border-l-cyan-400' : 'bg-indigo-50/80 border-l-indigo-500'}`}>
                   <p className="text-[10px] font-black uppercase text-cyan-400">Public Holiday</p>
@@ -80,7 +79,6 @@ export default function Sidebar({
                 </div>
               )}
 
-              {/* Individual Notes Display */}
               {(notes[formattedKey] || []).map((note, idx) => (
                 <div 
                   key={idx} 
@@ -88,13 +86,7 @@ export default function Sidebar({
                     darkMode ? 'bg-white/5 border-l-white hover:bg-white/10' : 'bg-gray-50 border-l-black hover:bg-gray-100'
                   }`}
                 >
-                  <p className={`text-[12px] font-bold pr-6 ${
-      darkMode ? 'text-white' : 'text-black' 
-    }`}>
-      {note}
-    </p>
-                  
-                  {/* Individual Delete Button - Visible on Hover */}
+                  <p className={`text-[12px] font-bold pr-6 ${darkMode ? 'text-white' : 'text-black'}`}>{note}</p>
                   <button 
                     onClick={() => deleteSingleNote(formattedKey, idx)}
                     className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity text-red-500 hover:scale-110"

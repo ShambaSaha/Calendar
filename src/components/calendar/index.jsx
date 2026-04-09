@@ -26,21 +26,16 @@ export default function Calendar() {
   const [notes, setNotes] = useState({});
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  // Fix Hydration & Load Notes
   useEffect(() => {
     setMounted(true);
     const savedNotes = localStorage.getItem("calendar-notes");
     if (savedNotes) setNotes(JSON.parse(savedNotes));
   }, []);
 
-  // Save Notes
   useEffect(() => {
-    if (mounted) {
-      localStorage.setItem("calendar-notes", JSON.stringify(notes));
-    }
+    if (mounted) localStorage.setItem("calendar-notes", JSON.stringify(notes));
   }, [notes, mounted]);
 
-  // FIXED: Logic moved to handleConfirm within the modal flow
   const handleConfirmDelete = () => {
     setNotes({});
     localStorage.removeItem("calendar-notes");
@@ -54,9 +49,10 @@ export default function Calendar() {
   if (!mounted) return <div className="h-screen w-screen bg-[#ebebeb]" />;
 
   return (
-    <div className={`h-screen w-screen p-6 flex items-center justify-center overflow-hidden transition-colors duration-500 ${darkMode ? 'bg-[#121212]' : 'bg-[#ebebeb]'}`}>
-      
-      {/* ADDED: The Modal must be rendered here to be visible */}
+    <div className={`h-screen w-screen flex items-center justify-center transition-colors duration-500 overflow-hidden 
+      ${darkMode ? 'bg-[#121212]' : 'bg-[#ebebeb]'} 
+      max-md:h-auto max-md:min-h-screen max-md:overflow-y-auto`}
+    >
       <AnimatePresence>
         {isDeleteModalOpen && (
           <DeleteModal 
@@ -67,18 +63,35 @@ export default function Calendar() {
         )}
       </AnimatePresence>
 
-      <button onClick={() => setDarkMode(!darkMode)} className="fixed top-10 right-10 z-[100] p-2.5">
-        {darkMode ? <Sun size={20} className="text-white"/> : <Moon size={20} className="text-black"/>}
-      </button>
+      <button 
+  onClick={() => setDarkMode(!darkMode)} 
+  className="fixed top-4 right-25 z-[100] p-3 bg-white/10 backdrop-blur-lg rounded-full md:top-10 md:right-10 md:bg-transparent"
+>
+  {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+</button>
 
-      <div className="w-full h-full max-w-[1700px] flex gap-6 perspective-[2000px]">
-        <div className={`flex-[3] relative rounded-[45px] shadow-2xl overflow-hidden transition-colors ${darkMode ? 'bg-[#1e1e1e]' : 'bg-white'}`}>
-          
-          <Wires darkMode={darkMode} />
+      <div className="w-full h-full max-w-[1700px] p-6 flex flex-row gap-6 perspective-[2000px] 
+        max-md:flex-col max-md:p-0 max-md:gap-0 max-md:perspective-none"
+      >
+        {/* Main Calendar Card */}
+        <div className={`flex-[3] relative rounded-[45px] shadow-2xl overflow-hidden transition-colors h-full 
+          ${darkMode ? 'bg-[#1e1e1e]' : 'bg-white'} 
+          max-md:min-h-[100vw] max-md:rounded-none max-md:shadow-none`}
+        >
+          <div className="max-md:hidden">
+            <Wires darkMode={darkMode} />
+          </div>
 
           <AnimatePresence mode="wait" custom={direction}>
-            <motion.div key={`${monthIdx}-${view}`} custom={direction} variants={flipVariants} initial="enter" animate="center" exit="exit" className="absolute inset-0 flex flex-col p-12">
-              
+            <motion.div 
+              key={`${monthIdx}-${view}`} 
+              custom={direction} 
+              variants={flipVariants} 
+              initial="enter" 
+              animate="center" 
+              exit="exit" 
+              className="absolute inset-0 flex flex-col p-12 max-md:p-5"
+            >
               <img src={MONTH_THEMES[monthIdx].img} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${darkMode ? 'opacity-30' : 'opacity-100'}`} alt="bg" />
               
               <CalendarHeader 
@@ -88,7 +101,10 @@ export default function Calendar() {
                 onPaginate={(d) => { setDirection(d); setCurrentDate(new Date(year, monthIdx + d, 1)); }}
               />
 
-              <div className={`relative mt-auto h-[58%] backdrop-blur-3xl rounded-[35px] p-8 border shadow-2xl overflow-hidden transition-all ${darkMode ? 'bg-[#252525]/90 border-white/5' : 'bg-white/80 border-white'}`}>
+              <div className={`relative mt-auto h-[58%] backdrop-blur-3xl rounded-[35px] p-8 border shadow-2xl overflow-hidden transition-all 
+                ${darkMode ? 'bg-[#252525]/90 border-white/5' : 'bg-white/80 border-white'} 
+                max-md:h-[65%] max-md:p-3 max-md:rounded-[20px]`}
+              >
                 {view === "month" && <MonthView days={days} year={year} monthIdx={monthIdx} darkMode={darkMode} rangeStart={rangeStart} rangeEnd={rangeEnd} setRangeStart={setRangeStart} setRangeEnd={setRangeEnd} notes={notes} getFormattedDate={getFormattedDate} />}
                 {view === "week" && <WeekView rangeStart={rangeStart} darkMode={darkMode} notes={notes} setNotes={setNotes} getFormattedDate={getFormattedDate} />}
                 {view === "day" && <DayView rangeStart={rangeStart} darkMode={darkMode} notes={notes} setNotes={setNotes} getFormattedDate={getFormattedDate}/>}
@@ -97,15 +113,18 @@ export default function Calendar() {
           </AnimatePresence>
         </div>
 
-        <Sidebar 
-          darkMode={darkMode} 
-          rangeStart={rangeStart} 
-          rangeEnd={rangeEnd} 
-          notes={notes} 
-          setNotes={setNotes} 
-          getFormattedDate={getFormattedDate} 
-          clearAllNotes={() => setIsDeleteModalOpen(true)} 
-        />
+        {/* Sidebar Wrapper */}
+        <div className="w-[400px] h-full max-md:w-full max-md:h-auto">
+          <Sidebar 
+            darkMode={darkMode} 
+            rangeStart={rangeStart} 
+            rangeEnd={rangeEnd} 
+            notes={notes} 
+            setNotes={setNotes} 
+            getFormattedDate={getFormattedDate} 
+            clearAllNotes={() => setIsDeleteModalOpen(true)} 
+          />
+        </div>
       </div>
     </div>
   );
