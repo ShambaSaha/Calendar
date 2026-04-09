@@ -1,40 +1,20 @@
-📅 Calendar App
-A high-fidelity calendar application designed with a "Physical Notebook" aesthetic.
+# 📅 BentoCalendar
 
-🛠 Tech Stack
-Framework: Next.js (App Router)
+A high-fidelity, glassmorphic calendar application designed with a "Physical Notebook" aesthetic. Built with Next.js and Tailwind CSS, it balances tactile design with modern web performance.
 
-Styling: Tailwind CSS (Custom utility classes for perspective & glassmorphism)
+---
 
-Animation: Framer Motion (Layout transitions & modal physics)
+## 🚀 Quick Start
 
-State & Persistence: React Hooks + LocalStorage
+### Prerequisites
+* **Node.js**: 18.x or later
+* **Package Manager**: npm or bun
 
-Icons: Lucide React
-
-✨ Key Features
-Notebook UI: A unique layout featuring spiral wire elements and textured backgrounds that shift based on the month.
-
-Smart Note Persistence: Integrated with localStorage so your notes stick around even after a hard refresh.
-
-Context-Aware Dark Mode: A deep, high-contrast dark mode that respects glassmorphic transparency.
-
-Fluid Views: Seamlessly switch between Month, Week, and Day views with animated transitions.
-
-Mobile-First Engineering: On desktop, it’s a sleek horizontal notebook; on mobile, it gracefully collapses into a stacked, touch-optimized interface without losing any functionality.
-
-🚀 Getting Started
-Prerequisites
-Node.js 18.x or later
-
-npm or bun
-
-Installation
-Clone the repo:
-
-Bash
-git clone https://github.com/[YourUsername]/[YourRepoName].git
-cd [YourRepoName]
+### Installation
+1. **Clone the repo:**
+   ```bash
+   git clone [https://github.com/](https://github.com/)[YourUsername]/[YourRepoName].git
+   cd [YourRepoName]
 Install dependencies:
 
 Bash
@@ -45,11 +25,39 @@ Bash
 npm run dev
 Open http://localhost:3000 to see the result.
 
+✨ Key Features
+📖 Notebook UI: A unique layout featuring spiral wire elements and textured backgrounds that shift dynamically based on the current month.
+
+💾 Smart Note Persistence: Integrated with localStorage to ensure your notes stay saved even after a hard refresh or browser restart.
+
+🌙 Context-Aware Dark Mode: A deep, high-contrast dark mode specifically engineered to maintain glassmorphic transparency and depth.
+
+🔄 Fluid Views: Seamlessly switch between Month, Week, and Day views with polished animated transitions.
+
+📱 Mobile-First Engineering: A dual-state interface that stacks vertically on mobile with touch-optimized buttons, while maintaining a spacious "Notebook" layout on desktop.
+
+🛠 Tech Stack
+Framework: Next.js 15 (App Router)
+
+Styling: Tailwind CSS
+
+Animation: Framer Motion
+
+Icons: Lucide React
+
+State: React Hooks + LocalStorage API
+
 🏗 Project Architecture
 Plaintext
 src/
-├── app/            # Next.js App Router & Metadata
+├── app/             # Next.js App Router, Layouts, & Metadata
 ├── components/     
-│   └── calendar/   # Core Calendar logic & UI components
-├── hooks/          # Custom hooks for date math and state
-└── constants/      # Month themes, holidays, and configuration
+│   └── calendar/    # Core components (Sidebar, Header, Wires, Views)
+├── hooks/           # Custom hooks for date calculations (useCalendar)
+└── constants/       # Month themes, holiday data, and configurations
+💡 Technical Highlights
+Responsive Stacking: Implemented a max-md strategy to strictly separate desktop "notebook" constraints from mobile "full-bleed" usability.
+
+Theme Synchronization: Developed a system to toggle light/dark modes while preserving background image legibility through CSS filters.
+
+Persistent Storage: Created a custom mounting logic to prevent hydration mismatches when pulling data from localStorage.
