@@ -16,42 +16,43 @@ A high-fidelity, glassmorphic calendar application designed with a "Physical Not
    git clone [https://github.com/](https://github.com/)[YourUsername]/[YourRepoName].git
    cd [YourRepoName]
    ```
-Install dependencies:
+2. **Install dependencies:**
 
 ```Bash
 
 npm install
 ```
-Run the development server:
+3. **Run the development server:**
 
 ```Bash
 npm run dev
-Open http://localhost:3000 to see the result.
 ```
+Open http://localhost:3000 to see the result.
+
 
 ## ✨ Key Features
 
-### 📖 Notebook UI: A unique layout featuring spiral wire elements and textured backgrounds that shift dynamically based on the current month.
+### 📖 Notebook UI:  A unique layout featuring spiral wire elements and textured backgrounds that shift dynamically based on the current month.
 
-### 💾 Smart Note Persistence: Integrated with localStorage to ensure your notes stay saved even after a hard refresh or browser restart.
+### 💾 Smart Note Persistence:  Integrated with localStorage to ensure your notes stay saved even after a hard refresh or browser restart.
 
-### 🌙 Context-Aware Dark Mode: A deep, high-contrast dark mode specifically engineered to maintain glassmorphic transparency and depth.
+### 🌙 Context-Aware Dark Mode:  A deep, high-contrast dark mode specifically engineered to maintain glassmorphic transparency and depth.
 
-### 🔄 Fluid Views: Seamlessly switch between Month, Week, and Day views with polished animated transitions.
+### 🔄 Fluid Views:  Seamlessly switch between Month, Week, and Day views with polished animated transitions.
 
-### 📱 Mobile-First Engineering: A dual-state interface that stacks vertically on mobile with touch-optimized buttons, while maintaining a spacious "Notebook" layout on desktop.
+### 📱 Mobile-First Engineering:  A dual-state interface that stacks vertically on mobile with touch-optimized buttons, while maintaining a spacious "Notebook" layout on desktop.
 
 ## 🛠 Tech Stack
 
-Framework: Next.js 15 (App Router)
+### Framework: Next.js 15 (App Router)
 
-Styling: Tailwind CSS
+### Styling: Tailwind CSS
 
-Animation: Framer Motion
+### Animation: Framer Motion
 
-Icons: Lucide React
+### Icons: Lucide React
 
-State: React Hooks + LocalStorage API
+### State: React Hooks + LocalStorage API
 
 ## 🏗 Project Architecture
 
