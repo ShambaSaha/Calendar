@@ -6,13 +6,6 @@ A high-fidelity, glassmorphic calendar application designed with a "Physical Not
 
 ## 🚀 Quick Start
 
-### Prerequisites
-
-* **Node.js**: 18.x or later
-* **Package Manager**: npm or bun
-
----
-
 ### Installation
 
 1. **Clone the repo:**
@@ -88,19 +81,38 @@ src/
 
 ## 💡 Technical Highlights
 
-* **Responsive Stacking**
-  Uses a mobile-first approach to separate desktop notebook layout and mobile usability.
+* **Multi-Granularity Calendar**
+  * Implemented Month, Week, and Day views with distinct UI logic
+  * Month view focuses on date-level interaction
+  * Week & Day views provide hourly scheduling grids for precise planning
 
-* **Theme Synchronization**
-  Light/Dark mode switching while preserving image readability using overlays and filters.
+* **Advanced Notes & Event System**
+  * Notes can be added for a single date
+  * Notes can also be added across a selected date range
+  * Week & Day views support time-based notes mapped to specific hours
 
-* **Persistent Storage**
-  Custom logic to safely use localStorage without hydration issues in Next.js.
+* **Persistent Local Storage Architecture**
+  * Uses localStorage to store notes/events
+  * Data persists across reloads and browser sessions
+  * Notes remain saved unless explicitly deleted by the user
+  * Handles hydration safely to avoid Next.js rendering issues
+
+* **Dynamic Monthly Theme System**
+  * Each month has a unique theme-based hero image
+  * Enhances visual appeal and contextual UI experience
+ 
+* **Event Marking System**
+  * Red for notes marked
+  * Blue for public holidays
+  * Yellow for present day
+
 
 ---
 
 ## 📌 Author
 
 Shamba Saha
+
+You can visit the project at, https://calendar-snowy-psi.vercel.app/
 
 ---
