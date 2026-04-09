@@ -48,12 +48,21 @@ export default function CalendarHeader({ view, setView, monthName, year, darkMod
         </div>
       </div>
 
-      {/* Bottom Row (Header Info): Month on Left, Year on Right */}
-      <div className="flex justify-between items-baseline w-full border-t border-white/10 pt-4 md:border-none md:pt-0">
-        <h2 className={`text-[90px] font-black tracking-tighter leading-none uppercase transition-colors ${darkMode ? 'text-white/90' : 'text-black/90'}`}>
+      {/* Bottom Row: Month and Year */}
+      {/* FIX: Use flex-col on mobile to prevent year and month from fighting for space */}
+      <div className="flex flex-col md:flex-row md:justify-between md:items-baseline w-full pt-4 md:pt-0">
+        
+        {/* FIX: Month name uses viewport width (vw) so it never overflows its container */}
+        <h2 className={`text-[12vw] md:text-[90px] font-black tracking-tighter leading-[0.85] uppercase transition-all ${
+          darkMode ? 'text-white' : 'text-black'
+        }`}>
           {monthName}
         </h2>
-        <span className={`text-3xl font-black transition-colors ${darkMode ? 'text-white/10' : 'text-white/30'}`}>
+
+        {/* FIX: Adjusted year visibility and positioning for mobile */}
+        <span className={`text-4xl md:text-3xl font-black transition-colors self-end md:self-auto ${
+          darkMode ? 'text-white/20' : 'text-black/10'
+        }`}>
           {year}
         </span>
       </div>
