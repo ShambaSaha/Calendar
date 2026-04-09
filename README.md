@@ -31,29 +31,6 @@ npm run dev
 
 ---
 
-## ✨ Key Features
-
-* 📖 **Notebook UI**
-  
-  A unique layout featuring spiral wire elements and textured backgrounds that shift dynamically based on the current month.
-
-* 💾 **Smart Note Persistence**
-  
-  Integrated with localStorage to ensure your notes stay saved even after a hard refresh or browser restart.
-
-* 🌙 **Context-Aware Dark Mode**
-  
-  A deep, high-contrast dark mode engineered to maintain glassmorphic transparency and readability.
-
-* 🔄 **Fluid Views**
-  
-  Seamlessly switch between Month, Week, and Day views with smooth transitions.
-
-* 📱 **Mobile-First Engineering**
-  
-  Responsive layout that stacks vertically on mobile while maintaining a spacious desktop experience.
-
----
 
 ## 🛠 Tech Stack
 
@@ -79,7 +56,7 @@ src/
 
 ---
 
-## 💡 Technical Highlights
+## 💡 Key Features
 
 * 🗓️**Multi-Granularity Calendar**
   * Implemented Month, Week, and Day views with distinct UI logic
