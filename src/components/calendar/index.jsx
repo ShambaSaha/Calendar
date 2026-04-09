@@ -70,9 +70,8 @@ export default function Calendar() {
         {darkMode ? <Sun size={20} color="white" /> : <Moon size={20} />}
       </button>
 
-      {/* Main Wrapper: Fixed padding and alignment for mobile */}
       <div className="w-full h-full max-w-[1700px] p-6 flex flex-row gap-6 perspective-[2000px] 
-        max-md:flex-col max-md:p-0 max-md:gap-0 max-md:h-auto"
+        max-md:flex-col max-md:p-0 max-md:gap-0 max-md:h-auto max-md:perspective-none"
       >
         {/* Main Calendar Card */}
         <div className={`flex-[3] relative rounded-[45px] shadow-2xl transition-colors h-full 
@@ -102,20 +101,41 @@ export default function Calendar() {
                 onPaginate={(d) => { setDirection(d); setCurrentDate(new Date(year, monthIdx + d, 1)); }}
               />
 
-              <div className={`relative mt-auto h-[58%] backdrop-blur-3xl rounded-[35px] p-8 border shadow-2xl overflow-hidden transition-all 
+              {/* Calendar Grid Container with Mobile Scroll Logic */}
+              <div className={`relative mt-auto backdrop-blur-3xl rounded-[35px] border shadow-2xl transition-all 
                 ${darkMode ? 'bg-[#252525]/90 border-white/5' : 'bg-white/80 border-white'} 
-                max-md:h-auto max-md:min-h-[380px] max-md:p-4 max-md:mt-6`}
+                md:h-[58%] md:p-8 
+                max-md:p-4 max-md:mt-6 max-md:mb-6
+                ${view === "month" ? "max-md:h-fit" : "max-md:h-[450px] overflow-y-auto custom-scrollbar"}`}
               >
-                {view === "month" && <MonthView days={days} year={year} monthIdx={monthIdx} darkMode={darkMode} rangeStart={rangeStart} rangeEnd={rangeEnd} setRangeStart={setRangeStart} setRangeEnd={setRangeEnd} notes={notes} getFormattedDate={getFormattedDate} />}
-                {view === "week" && <WeekView rangeStart={rangeStart} darkMode={darkMode} notes={notes} setNotes={setNotes} getFormattedDate={getFormattedDate} />}
-                {view === "day" && <DayView rangeStart={rangeStart} darkMode={darkMode} notes={notes} setNotes={setNotes} getFormattedDate={getFormattedDate}/>}
+                {view === "month" && (
+                  <MonthView 
+                    days={days} year={year} monthIdx={monthIdx} 
+                    darkMode={darkMode} rangeStart={rangeStart} 
+                    rangeEnd={rangeEnd} setRangeStart={setRangeStart} 
+                    setRangeEnd={setRangeEnd} notes={notes} 
+                    getFormattedDate={getFormattedDate} 
+                  />
+                )}
+                
+                {view === "week" && (
+                  <div className="h-full">
+                    <WeekView rangeStart={rangeStart} darkMode={darkMode} notes={notes} setNotes={setNotes} getFormattedDate={getFormattedDate} />
+                  </div>
+                )}
+                
+                {view === "day" && (
+                  <div className="h-full">
+                    <DayView rangeStart={rangeStart} darkMode={darkMode} notes={notes} setNotes={setNotes} getFormattedDate={getFormattedDate}/>
+                  </div>
+                )}
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Sidebar Wrapper: Cleaned up spacing to prevent bottom gaps */}
-        <div className="w-[400px] h-full max-md:w-full max-md:h-auto max-md:bg-white max-md:dark:bg-[#1e1e1e]">
+        {/* Sidebar Wrapper */}
+        <div className={`w-[400px] h-full max-md:w-full max-md:h-auto max-md:px-4 max-md:pb-12 ${darkMode ? 'max-md:bg-[#1e1e1e]' : 'max-md:bg-white'}`}>
           <Sidebar 
             darkMode={darkMode} 
             rangeStart={rangeStart} 
