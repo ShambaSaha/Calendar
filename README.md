@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+📅 Calendar App
+A high-fidelity calendar application designed with a "Physical Notebook" aesthetic.
 
-## Getting Started
+🛠 Tech Stack
+Framework: Next.js (App Router)
 
-First, run the development server:
+Styling: Tailwind CSS (Custom utility classes for perspective & glassmorphism)
 
-```bash
+Animation: Framer Motion (Layout transitions & modal physics)
+
+State & Persistence: React Hooks + LocalStorage
+
+Icons: Lucide React
+
+✨ Key Features
+Notebook UI: A unique layout featuring spiral wire elements and textured backgrounds that shift based on the month.
+
+Smart Note Persistence: Integrated with localStorage so your notes stick around even after a hard refresh.
+
+Context-Aware Dark Mode: A deep, high-contrast dark mode that respects glassmorphic transparency.
+
+Fluid Views: Seamlessly switch between Month, Week, and Day views with animated transitions.
+
+Mobile-First Engineering: On desktop, it’s a sleek horizontal notebook; on mobile, it gracefully collapses into a stacked, touch-optimized interface without losing any functionality.
+
+🚀 Getting Started
+Prerequisites
+Node.js 18.x or later
+
+npm or bun
+
+Installation
+Clone the repo:
+
+Bash
+git clone https://github.com/[YourUsername]/[YourRepoName].git
+cd [YourRepoName]
+Install dependencies:
+
+Bash
+npm install
+Run the development server:
+
+Bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open http://localhost:3000 to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🏗 Project Architecture
+Plaintext
+src/
+├── app/            # Next.js App Router & Metadata
+├── components/     
+│   └── calendar/   # Core Calendar logic & UI components
+├── hooks/          # Custom hooks for date math and state
+└── constants/      # Month themes, holidays, and configuration
