@@ -32,15 +32,15 @@ Open http://localhost:3000 to see the result.
 
 ## ✨ Key Features
 
-### 📖 Notebook UI:  A unique layout featuring spiral wire elements and textured backgrounds that shift dynamically based on the current month.
+### * 📖 Notebook UI:  A unique layout featuring spiral wire elements and textured backgrounds that shift dynamically based on the current month.
 
-### 💾 Smart Note Persistence:  Integrated with localStorage to ensure your notes stay saved even after a hard refresh or browser restart.
+### * 💾 Smart Note Persistence:  Integrated with localStorage to ensure your notes stay saved even after a hard refresh or browser restart.
 
-### 🌙 Context-Aware Dark Mode:  A deep, high-contrast dark mode specifically engineered to maintain glassmorphic transparency and depth.
+### * 🌙 Context-Aware Dark Mode:  A deep, high-contrast dark mode specifically engineered to maintain glassmorphic transparency and depth.
 
-### 🔄 Fluid Views:  Seamlessly switch between Month, Week, and Day views with polished animated transitions.
+### * 🔄 Fluid Views:  Seamlessly switch between Month, Week, and Day views with polished animated transitions.
 
-### 📱 Mobile-First Engineering:  A dual-state interface that stacks vertically on mobile with touch-optimized buttons, while maintaining a spacious "Notebook" layout on desktop.
+### * 📱 Mobile-First Engineering:  A dual-state interface that stacks vertically on mobile with touch-optimized buttons, while maintaining a spacious "Notebook" layout on desktop.
 
 ## 🛠 Tech Stack
 
@@ -68,8 +68,8 @@ src/
 
 ## 💡 Technical Highlights
 
-### Responsive Stacking: Implemented a max-md strategy to strictly separate desktop "notebook" constraints from mobile "full-bleed" usability.
+### * Responsive Stacking: Implemented a max-md strategy to strictly separate desktop "notebook" constraints from mobile "full-bleed" usability.
 
-### Theme Synchronization: Developed a system to toggle light/dark modes while preserving background image legibility through CSS filters.
+### * Theme Synchronization: Developed a system to toggle light/dark modes while preserving background image legibility through CSS filters.
 
-### Persistent Storage: Created a custom mounting logic to prevent hydration mismatches when pulling data from localStorage.
+### * Persistent Storage: Created a custom mounting logic to prevent hydration mismatches when pulling data from localStorage.
