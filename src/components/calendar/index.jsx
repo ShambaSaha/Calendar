@@ -49,9 +49,9 @@ export default function Calendar() {
   if (!mounted) return <div className="h-screen w-screen bg-[#ebebeb]" />;
 
   return (
-    <div className={`h-screen w-screen flex items-center justify-center transition-colors duration-500 overflow-x-hidden 
+    <div className={`h-screen w-screen flex items-center justify-center transition-colors duration-500 
       ${darkMode ? 'bg-[#121212]' : 'bg-[#ebebeb]'} 
-      max-md:h-auto max-md:min-h-screen max-md:block max-md:overflow-y-auto`}
+      max-md:h-auto max-md:block max-md:overflow-y-auto max-md:overflow-x-hidden`}
     >
       <AnimatePresence>
         {isDeleteModalOpen && (
@@ -70,13 +70,14 @@ export default function Calendar() {
         {darkMode ? <Sun size={20} color="white" /> : <Moon size={20} />}
       </button>
 
+      {/* Main Wrapper: Fixed padding and alignment for mobile */}
       <div className="w-full h-full max-w-[1700px] p-6 flex flex-row gap-6 perspective-[2000px] 
-        max-md:flex-col max-md:p-0 max-md:gap-0 max-md:perspective-none"
+        max-md:flex-col max-md:p-0 max-md:gap-0 max-md:h-auto"
       >
         {/* Main Calendar Card */}
         <div className={`flex-[3] relative rounded-[45px] shadow-2xl transition-colors h-full 
           ${darkMode ? 'bg-[#1e1e1e]' : 'bg-white'} 
-          max-md:h-auto max-md:min-h-screen max-md:rounded-none max-md:shadow-none`}
+          max-md:h-auto max-md:rounded-none max-md:shadow-none`}
         >
           <div className="max-md:hidden">
             <Wires darkMode={darkMode} />
@@ -90,7 +91,6 @@ export default function Calendar() {
               initial="enter" 
               animate="center" 
               exit="exit" 
-              /* FIXED: Changed from absolute to relative on mobile to allow natural height and prevent overlap */
               className="absolute inset-0 flex flex-col p-12 max-md:relative max-md:inset-auto max-md:p-6 max-md:pt-20 max-md:h-auto"
             >
               <img src={MONTH_THEMES[monthIdx].img} className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${darkMode ? 'opacity-30' : 'opacity-100'}`} alt="bg" />
@@ -102,10 +102,9 @@ export default function Calendar() {
                 onPaginate={(d) => { setDirection(d); setCurrentDate(new Date(year, monthIdx + d, 1)); }}
               />
 
-              {/* FIXED: Uses h-fit on mobile to ensure all rows of the calendar are visible */}
               <div className={`relative mt-auto h-[58%] backdrop-blur-3xl rounded-[35px] p-8 border shadow-2xl overflow-hidden transition-all 
                 ${darkMode ? 'bg-[#252525]/90 border-white/5' : 'bg-white/80 border-white'} 
-                max-md:h-fit max-md:min-h-[400px] max-md:p-4 max-md:mt-8 max-md:mb-8`}
+                max-md:h-auto max-md:min-h-[380px] max-md:p-4 max-md:mt-6`}
               >
                 {view === "month" && <MonthView days={days} year={year} monthIdx={monthIdx} darkMode={darkMode} rangeStart={rangeStart} rangeEnd={rangeEnd} setRangeStart={setRangeStart} setRangeEnd={setRangeEnd} notes={notes} getFormattedDate={getFormattedDate} />}
                 {view === "week" && <WeekView rangeStart={rangeStart} darkMode={darkMode} notes={notes} setNotes={setNotes} getFormattedDate={getFormattedDate} />}
@@ -115,8 +114,8 @@ export default function Calendar() {
           </AnimatePresence>
         </div>
 
-        {/* Sidebar Wrapper */}
-        <div className="w-[400px] h-full max-md:w-full max-md:h-auto max-md:px-4 max-md:pb-10">
+        {/* Sidebar Wrapper: Cleaned up spacing to prevent bottom gaps */}
+        <div className="w-[400px] h-full max-md:w-full max-md:h-auto max-md:bg-white max-md:dark:bg-[#1e1e1e]">
           <Sidebar 
             darkMode={darkMode} 
             rangeStart={rangeStart} 
