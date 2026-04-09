@@ -64,11 +64,11 @@ export default function Calendar() {
       </AnimatePresence>
 
       <button 
-  onClick={() => setDarkMode(!darkMode)} 
-  className="fixed top-4 right-25 z-[100] p-3 bg-white/10 backdrop-blur-lg rounded-full md:top-10 md:right-10 md:bg-transparent"
->
-  {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-</button>
+        onClick={() => setDarkMode(!darkMode)} 
+        className="fixed top-4 right-25 z-[100] p-3 bg-white/10 backdrop-blur-lg rounded-full md:top-10 md:right-10 md:bg-transparent"
+      >
+        {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
 
       <div className="w-full h-full max-w-[1700px] p-6 flex flex-row gap-6 perspective-[2000px] 
         max-md:flex-col max-md:p-0 max-md:gap-0 max-md:perspective-none"
@@ -103,7 +103,7 @@ export default function Calendar() {
 
               <div className={`relative mt-auto h-[58%] backdrop-blur-3xl rounded-[35px] p-8 border shadow-2xl overflow-hidden transition-all 
                 ${darkMode ? 'bg-[#252525]/90 border-white/5' : 'bg-white/80 border-white'} 
-                max-md:h-[65%] max-md:p-3 max-md:rounded-[20px]`}
+                max-md:h-auto max-md:min-h-[400px] max-md:p-4 max-md:rounded-[20px]`}
               >
                 {view === "month" && <MonthView days={days} year={year} monthIdx={monthIdx} darkMode={darkMode} rangeStart={rangeStart} rangeEnd={rangeEnd} setRangeStart={setRangeStart} setRangeEnd={setRangeEnd} notes={notes} getFormattedDate={getFormattedDate} />}
                 {view === "week" && <WeekView rangeStart={rangeStart} darkMode={darkMode} notes={notes} setNotes={setNotes} getFormattedDate={getFormattedDate} />}
