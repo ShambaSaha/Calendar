@@ -81,30 +81,30 @@ src/
 
 ## 💡 Technical Highlights
 
-* **Multi-Granularity Calendar**
+* 🗓️**Multi-Granularity Calendar**
   * Implemented Month, Week, and Day views with distinct UI logic
   * Month view focuses on date-level interaction
   * Week & Day views provide hourly scheduling grids for precise planning
 
-* **Advanced Notes & Event System**
+* 📝**Advanced Notes & Event System**
   * Notes can be added for a single date
   * Notes can also be added across a selected date range
   * Week & Day views support time-based notes mapped to specific hours
 
-* **Persistent Local Storage Architecture**
+* 💾**Persistent Local Storage Architecture**
   * Uses localStorage to store notes/events
   * Data persists across reloads and browser sessions
   * Notes remain saved unless explicitly deleted by the user
   * Handles hydration safely to avoid Next.js rendering issues
 
-* **Dynamic Monthly Theme System**
+* 🎨**Dynamic Monthly Theme System**
   * Each month has a unique theme-based hero image
   * Enhances visual appeal and contextual UI experience
  
-* **Event Marking System**
-  * Red for notes marked
-  * Blue for public holidays
-  * Yellow for present day
+* 🎯 **Event Marking System**
+  * 🔴 Red → Notes marked
+  * 🔵 Blue → Public holidays
+  * 🟡 Yellow → Present day
 
 
 ---
